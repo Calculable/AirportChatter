@@ -3,11 +3,15 @@
 This branch keeps the SoundCloud widget; no SoundCloud API credentials or native audio extraction are used.
 
 - Native remote commands and the widget's Media Session play/pause actions forward to the same coordinator. Play and Pause are explicit, idempotent operations; next/previous select music tracks.
-- The widget bridge accepts media-session commands only from its `w.soundcloud.com` frame. The existing audio-state bridge remains restricted to the main document.
-- The iOS session uses `.playback` with `.longFormAudio`. The initial route policy in Info.plist is also `LongFormAudio`, and background audio remains enabled.
+- The widget bridge accepts media-session commands only from the `w.soundcloud.com` security origin. The existing audio-state bridge remains restricted to the main document. It installs at document start and preserves shared transport handlers when the widget later registers or clears its own handlers; otherwise late registrations can restore music-only lock-screen controls.
+- The iOS session uses `.playback`, default routing, and `.mixWithOthers` at startup and before Play. Native playback and WebKit need to coexist; the nonmixable long-form session introduced in the experiment could interrupt the other player and immediately trigger shared Pause. The forced initial long-form policy has been removed. Background audio remains enabled.
 - The button below the main play control is an app-level AirPlay route picker.
 
 This coordinates two players. It does not create one mixed audio stream, and WebKit/SoundCloud still control their own playback implementation.
+
+The route picker does not guarantee that both sources reach the same AirPlay receiver. Restoring simultaneous playback takes priority over forcing a route-sharing policy that interrupts playback.
+
+AirPlay follow-up (2026-09-22): tested `.playback` + `.longFormAudio` + `.mixWithOthers` in the iOS 27 simulator. `setCategory` rejected the combination with OSStatus -50; the fallback to default routing retained mixing. The trial and diagnostic logging were removed. This does not establish behavior on every physical device, but provides no validated simple routing fix for the current WebKit/native combination.
 
 ## Validation
 

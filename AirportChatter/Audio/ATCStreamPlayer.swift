@@ -31,9 +31,6 @@ final class ATCStreamPlayer {
         self.connectionTimeout = connectionTimeout
         self.stablePlaybackWindow = stablePlaybackWindow
         player.automaticallyWaitsToMinimizeStalling = true
-        playbackObservation = player.observe(\.timeControlStatus, options: [.new]) { [weak self] _, _ in
-            Task { @MainActor [weak self] in self?.playbackChanged() }
-        }
     }
 
     deinit {
@@ -70,6 +67,11 @@ final class ATCStreamPlayer {
     private func loadStation() {
         guard let station else { return }
         timeoutTask?.cancel()
+        // Stop observing the old item before replacing it. AVPlayer's playing
+        // state can outlive that item, and already queued callbacks can arrive
+        // after a station switch.
+        playbackObservation = nil
+        player.pause()
         onReadinessChanged?(false)
         onPlayingChanged?(false)
         notifications.forEach(NotificationCenter.default.removeObserver)
@@ -78,6 +80,12 @@ final class ATCStreamPlayer {
         hasPlayedCurrentItem = false
         let item = AVPlayerItem(url: station.streamURL)
         player.replaceCurrentItem(with: item)
+        playbackObservation = player.observe(\.timeControlStatus, options: [.initial, .new]) { [weak self] _, _ in
+            Task { @MainActor [weak self] in
+                guard let self, self.player.currentItem === item else { return }
+                self.playbackChanged()
+            }
+        }
         statusObservation = item.observe(\.status, options: [.initial, .new]) { [weak self] item, _ in
             Task { @MainActor [weak self] in
                 guard let self, self.player.currentItem === item else { return }
@@ -121,7 +129,8 @@ final class ATCStreamPlayer {
     }
 
     private func playbackChanged() {
-        let playing = player.timeControlStatus == .playing && wantsPlayback
+        let playing = player.timeControlStatus == .playing
+            && player.currentItem?.status == .readyToPlay && wantsPlayback
         onPlayingChanged?(playing)
         if playing {
             hasPlayedCurrentItem = true

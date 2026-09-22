@@ -74,7 +74,7 @@ final class SoundCloudCoordinator: NSObject, WKNavigationDelegate, WKScriptMessa
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let event = message.body as? String else { return }
         if message.name == "soundCloudRemote" {
-            guard message.frameInfo.request.url?.host == "w.soundcloud.com",
+            guard message.frameInfo.securityOrigin.host == "w.soundcloud.com",
                   let command = PlaybackCommand(rawValue: event) else { return }
             bridge.onRemoteCommand?(command)
         } else if message.frameInfo.isMainFrame {
@@ -143,7 +143,7 @@ extension SoundCloudWebView {
         config.userContentController.add(context.coordinator, name: "soundCloud")
         config.userContentController.add(context.coordinator, name: "soundCloudRemote")
         config.userContentController.addUserScript(WKUserScript(source: Self.remoteControlScript,
-            injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+            injectionTime: .atDocumentStart, forMainFrameOnly: false))
         config.allowsAirPlayForMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
 #if os(iOS)
@@ -165,12 +165,19 @@ extension SoundCloudWebView {
     (() => {
       if (location.hostname !== 'w.soundcloud.com' || !('mediaSession' in navigator)) return;
       const actions = {play: 'play', pause: 'pause', stop: 'pause', nexttrack: 'next', previoustrack: 'previous'};
+      const session = navigator.mediaSession;
+      const setActionHandler = session.setActionHandler.bind(session);
+      const forward = command => () => window.webkit.messageHandlers.soundCloudRemote.postMessage(command);
+      // The widget installs (and replaces) its own handlers asynchronously.
+      // Keep shared transport actions routed to native even after those updates.
+      session.setActionHandler = (action, handler) => {
+        const command = Object.prototype.hasOwnProperty.call(actions, action) ? actions[action] : null;
+        setActionHandler(action, command ? forward(command) : handler);
+      };
       function install() {
         for (const [action, command] of Object.entries(actions)) {
           try {
-            navigator.mediaSession.setActionHandler(action, () => {
-              window.webkit.messageHandlers.soundCloudRemote.postMessage(command);
-            });
+            setActionHandler(action, forward(command));
           } catch (_) { /* Some OS versions do not support every action. */ }
         }
       }
@@ -258,4 +265,3 @@ extension SoundCloudWebView {
     </html>
     """
 }
-

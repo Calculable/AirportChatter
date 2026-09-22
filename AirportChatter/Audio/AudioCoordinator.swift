@@ -131,7 +131,7 @@ final class AudioCoordinator {
         guard let station = selectedStation else { return }
 #if os(iOS)
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, policy: .longFormAudio, options: [])
+            try prepareAudioSession()
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             playbackState.radioError = "Could not start audio: \(error.localizedDescription)"
@@ -273,11 +273,20 @@ final class AudioCoordinator {
         UserDefaults.standard.set(playbackState.isPlaying, forKey: lastIntentKey)
     }
 
+#if os(iOS)
+    private func prepareAudioSession() throws {
+        // The native player and WebKit use separate audio sessions. Without mixing,
+        // starting either can interrupt the other and trigger our shared Pause command.
+        // Do not force long-form routing: it does not combine these two players.
+        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default,
+                                                       policy: .default, options: [.mixWithOthers])
+    }
+#endif
+
     private func configureAudioSession() {
 #if os(iOS)
         do {
-            // Playback already supports AirPlay and A2DP; explicit routing options are invalid on some iOS versions.
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, policy: .longFormAudio, options: [])
+            try prepareAudioSession()
 
             NotificationCenter.default.addObserver(
                 forName: AVAudioSession.interruptionNotification,

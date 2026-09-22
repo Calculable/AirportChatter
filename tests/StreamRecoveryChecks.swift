@@ -1,4 +1,4 @@
-// swiftc AirportChatter/Models/Station.swift AirportChatter/Audio/ATCStreamPlayer.swift tests/StreamRecoveryChecks.swift -o /tmp/recovery-checks && /tmp/recovery-checks
+// swiftc AirportChatter/Models/Station.swift AirportChatter/Models/PlaybackState.swift AirportChatter/Audio/ATCStreamPlayer.swift tests/StreamRecoveryChecks.swift -o /tmp/recovery-checks && /tmp/recovery-checks
 import AVFoundation
 import Foundation
 
@@ -39,6 +39,42 @@ import Foundation
         try? await Task.sleep(for: .milliseconds(200))
         precondition(radio.player.currentItem === selectedItem, "Old station events must be ignored")
         precondition(!recovering)
+
+        // Switch away from actual playback, with playback notifications queued,
+        // and ensure the new selection never inherits the old playing state.
+        let audioURL = FileManager.default.temporaryDirectory.appendingPathComponent("station-switch-\(UUID().uuidString).wav")
+        defer { try? FileManager.default.removeItem(at: audioURL) }
+        let format = AVAudioFormat(standardFormatWithSampleRate: 48_000, channels: 1)!
+        let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: 480_000)!
+        buffer.frameLength = buffer.frameCapacity
+        buffer.floatChannelData![0].initialize(repeating: 0, count: Int(buffer.frameLength))
+        do {
+            let file = try AVAudioFile(forWriting: audioURL, settings: format.settings)
+            try file.write(from: buffer)
+        } catch { preconditionFailure("Could not create playback fixture: \(error)") }
+        let playable = Station(id: "local", name: "Local audio", iata: "", code: "local", streamURL: audioURL, region: "Test", isDefault: false)
+        var state = PlaybackState()
+        state.isPlaying = true
+        radio.onPlayingChanged = {
+            state.radioPlaying = $0
+            if $0 { state.radioHasPlayedSelection = true }
+        }
+        radio.onRecoveryChanged = { state.radioReconnecting = $0 }
+        radio.select(station: playable, autoPlay: true)
+        for _ in 0..<100 {
+            if state.radioPlaying { break }
+            try? await Task.sleep(for: .milliseconds(20))
+        }
+        precondition(state.radioPlaying, "Fixture must start playing before switching")
+        state.radioHasPlayedSelection = false
+        state.radioPlaying = false
+        radio.select(station: station, autoPlay: true)
+        for _ in 0..<20 {
+            try? await Task.sleep(for: .milliseconds(10))
+            precondition(!state.radioHasPlayedSelection, "New selection must not inherit old playback")
+            precondition(state.airportStatus == .waiting, "Switching must show Connecting, including initial retries")
+        }
+        radio.pause()
         print("Bounded retries, exhaustion, pause cancellation, and stale station checks passed.")
     }
 }
