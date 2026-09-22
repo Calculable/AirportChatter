@@ -15,6 +15,7 @@ final class AudioCoordinator {
 
     private let stationRepository: StationRepository
     private let atcPlayer = ATCStreamPlayer()
+    private let systemPlayback = SystemPlaybackController()
     private var didStart = false
 
     private let selectedStationKey = "airport_chatter_selected_station"
@@ -35,6 +36,8 @@ final class AudioCoordinator {
     }
 
     private func bindCallbacks() {
+        systemPlayback.onCommand = { [weak self] command in self?.handlePlaybackCommand(command) }
+        soundCloud.onRemoteCommand = { [weak self] command in self?.handlePlaybackCommand(command) }
         soundCloud.onReadyChanged = { [weak self] isReady in
             self?.playbackState.musicReady = isReady
             if isReady {
@@ -44,6 +47,7 @@ final class AudioCoordinator {
 
         soundCloud.onPlayingChanged = { [weak self] playing in
             self?.playbackState.musicPlaying = playing
+            self?.updateSystemPlayback()
         }
         soundCloud.onFailure = { [weak self] message in
             self?.pausePlayback()
@@ -55,6 +59,7 @@ final class AudioCoordinator {
                 self?.playbackState.radioHasPlayedSelection = true
                 self?.playbackState.radioError = nil
             }
+            self?.updateSystemPlayback()
         }
 
         atcPlayer.onRecoveryChanged = { [weak self] recovering in
@@ -108,25 +113,46 @@ final class AudioCoordinator {
     }
 
     func togglePlayback() {
-        if playbackState.shouldPause {
-            pausePlayback()
-        } else {
-            guard let station = selectedStation else { return }
+        if playbackState.shouldPause { pausePlayback() }
+        else { playPlayback() }
+    }
+
+    func handlePlaybackCommand(_ command: PlaybackCommand) {
+        switch command {
+        case .play: playPlayback()
+        case .pause: pausePlayback()
+        case .toggle: togglePlayback()
+        case .next: nextTrack()
+        case .previous: previousTrack()
+        }
+    }
+
+    private func playPlayback() {
+        guard let station = selectedStation else { return }
 #if os(iOS)
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-            } catch {
-                playbackState.radioError = "Could not start audio: \(error.localizedDescription)"
-                return
-            }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, policy: .longFormAudio, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            playbackState.radioError = "Could not start audio: \(error.localizedDescription)"
+            return
+        }
 #endif
+        // A repeated system Play command must not restart an already playing station.
+        if !playbackState.isPlaying || playbackState.radioError != nil {
             playbackState.radioError = nil
             playbackState.radioHasPlayedSelection = false
             playbackState.isPlaying = true
-            persistIntent()
             atcPlayer.select(station: station, autoPlay: true)
-            soundCloud.play()
         }
+        soundCloud.play()
+        persistIntent()
+        updateSystemPlayback()
+    }
+
+    private func updateSystemPlayback() {
+        systemPlayback.update(station: selectedStation?.displayName,
+                              playing: playbackState.radioPlaying || playbackState.musicPlaying)
     }
 
     private func pausePlayback() {
@@ -134,6 +160,7 @@ final class AudioCoordinator {
         persistIntent()
         atcPlayer.pause()
         soundCloud.pause()
+        systemPlayback.update(station: selectedStation?.displayName, playing: false)
     }
 
     func moveStation(in visibleStations: [Station], forward: Bool) {
@@ -180,6 +207,7 @@ final class AudioCoordinator {
         UserDefaults.standard.set(station.id, forKey: selectedStationKey)
 
         atcPlayer.select(station: station, autoPlay: playbackState.isPlaying)
+        updateSystemPlayback()
     }
 
     private func updateCurrentStationHealth(reachable: Bool, responseCode: Int?, hasRecentAudioEnergy: Bool) {
@@ -249,7 +277,7 @@ final class AudioCoordinator {
 #if os(iOS)
         do {
             // Playback already supports AirPlay and A2DP; explicit routing options are invalid on some iOS versions.
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, policy: .longFormAudio, options: [])
 
             NotificationCenter.default.addObserver(
                 forName: AVAudioSession.interruptionNotification,

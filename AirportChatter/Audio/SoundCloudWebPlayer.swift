@@ -14,6 +14,7 @@ final class SoundCloudWebPlayer {
     var onReadyChanged: ((Bool) -> Void)?
     var onPlayingChanged: ((Bool) -> Void)?
     var onFailure: ((String) -> Void)?
+    var onRemoteCommand: ((PlaybackCommand) -> Void)?
 
     func attach(webView: WKWebView) {
         guard self.webView !== webView else { return }
@@ -71,8 +72,14 @@ final class SoundCloudCoordinator: NSObject, WKNavigationDelegate, WKScriptMessa
     init(bridge: SoundCloudWebPlayer) { self.bridge = bridge }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard message.frameInfo.isMainFrame, let event = message.body as? String else { return }
-        bridge.receive(event)
+        guard let event = message.body as? String else { return }
+        if message.name == "soundCloudRemote" {
+            guard message.frameInfo.request.url?.host == "w.soundcloud.com",
+                  let command = PlaybackCommand(rawValue: event) else { return }
+            bridge.onRemoteCommand?(command)
+        } else if message.frameInfo.isMainFrame {
+            bridge.receive(event)
+        }
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -134,6 +141,10 @@ extension SoundCloudWebView {
         let config = WKWebViewConfiguration()
         config.defaultWebpagePreferences.allowsContentJavaScript = true
         config.userContentController.add(context.coordinator, name: "soundCloud")
+        config.userContentController.add(context.coordinator, name: "soundCloudRemote")
+        config.userContentController.addUserScript(WKUserScript(source: Self.remoteControlScript,
+            injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+        config.allowsAirPlayForMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
 #if os(iOS)
         config.allowsInlineMediaPlayback = true
@@ -147,6 +158,26 @@ extension SoundCloudWebView {
         webView.loadHTMLString(Self.embeddedHTML, baseURL: nil)
         return webView
     }
+
+    // WebKit may own Now Playing while the widget is audible. Forward its system
+    // media-session actions to the same coordinator as the app's native controls.
+    static let remoteControlScript = """
+    (() => {
+      if (location.hostname !== 'w.soundcloud.com' || !('mediaSession' in navigator)) return;
+      const actions = {play: 'play', pause: 'pause', stop: 'pause', nexttrack: 'next', previoustrack: 'previous'};
+      function install() {
+        for (const [action, command] of Object.entries(actions)) {
+          try {
+            navigator.mediaSession.setActionHandler(action, () => {
+              window.webkit.messageHandlers.soundCloudRemote.postMessage(command);
+            });
+          } catch (_) { /* Some OS versions do not support every action. */ }
+        }
+      }
+      install();
+      document.addEventListener('play', install, true);
+    })();
+    """
 
     // show_teaser=false removes the mobile app-promotion overlay without synthetic clicks.
     static let embeddedHTML = """

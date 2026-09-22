@@ -151,6 +151,9 @@ struct ContentView: View {
             .accessibilityLabel(model.playbackState.shouldPause ? "Pause both players" : "Play both players")
             .help(model.playbackState.shouldPause ? "Pause both players" : "Play both players")
             .disabled(model.selectedStation == nil)
+#if os(iOS)
+            AudioRoutePicker().frame(width: 44, height: 36)
+#endif
             Text("Airport radio + SoundCloud")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
