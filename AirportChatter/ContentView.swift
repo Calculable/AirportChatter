@@ -297,6 +297,9 @@ struct ContentView: View {
                     airportStatus
                 }.padding(17)
             }
+            Link("Airport audio provided by LiveATC.net ↗", destination: AppLinks.liveATC)
+                .font(TowerStyle.type(12))
+                .foregroundStyle(TowerStyle.mint)
             HStack(spacing: 14) {
                 transportButton("Previous station", symbol: "backward.end.fill", disabled: visibleStations.isEmpty) { model.moveStation(in: visibleStations, forward: false) }
                 Spacer()
@@ -353,11 +356,17 @@ struct ContentView: View {
 
     private var footer: some View {
         VStack(spacing: 16) {
+            Link("Airport audio: LiveATC.net ↗", destination: AppLinks.liveATC)
+                .font(TowerStyle.type(12))
+                .foregroundStyle(TowerStyle.mint)
             Text("For personal use only. Not licensed for public distribution.")
                 .font(TowerStyle.type(11))
                 .foregroundStyle(TowerStyle.paper.opacity(0.75))
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
+            Link("Privacy & support", destination: AppLinks.privacy)
+                .font(TowerStyle.type(12))
+                .foregroundStyle(TowerStyle.paper)
             Button { showsDiagnostics = true } label: {
                 Image(systemName: "gearshape").frame(width: 18)
             }
@@ -371,6 +380,21 @@ struct ContentView: View {
             EquipmentPanel(label: "Settings & diagnostics") {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Personal listening only. Not licensed for public distribution.").font(TowerStyle.type(11)).foregroundStyle(TowerStyle.paper.opacity(0.65))
+                    Text("For entertainment only. Audio may be delayed or unavailable. Never use it for navigation, flight operations, or safety decisions.")
+                        .font(TowerStyle.type(12)).foregroundStyle(TowerStyle.paper)
+                    Text("Airport audio is provided by LiveATC.net and its feed contributors. AirportChatter is an independent project; no endorsement by LiveATC, SoundCloud, or an aviation authority is implied.")
+                        .font(TowerStyle.type(12)).foregroundStyle(TowerStyle.paper)
+                    VStack(alignment: .leading, spacing: 14) {
+                        Link("AirportChatter privacy policy ↗", destination: AppLinks.privacy)
+                        Link("Contact AirportChatter ↗", destination: AppLinks.contact)
+                        Link("LiveATC privacy policy ↗", destination: AppLinks.liveATCPrivacy)
+                        Link("LiveATC terms of use ↗", destination: AppLinks.liveATCTerms)
+                        Link("Visit & support LiveATC ↗", destination: AppLinks.liveATC)
+                        Link("SoundCloud privacy policy ↗", destination: AppLinks.soundCloudPrivacy)
+                        Link("SoundCloud cookies & choices ↗", destination: AppLinks.soundCloudCookies)
+                    }.font(TowerStyle.type(12)).foregroundStyle(TowerStyle.mint)
+                    Text("The embedded SoundCloud player connects to SoundCloud when it loads, even before music starts. Its privacy and cookie policies apply.")
+                        .font(TowerStyle.type(11)).foregroundStyle(TowerStyle.paper.opacity(0.75))
                     diagnostic("STATION", model.selectedStation?.displayName ?? "None")
                     diagnostic("PLAYBACK", model.playbackState.playbackSummary)
                     diagnostic("AIRPORT RECEIVER", model.playbackState.radioReady ? "Ready" : "Not ready")

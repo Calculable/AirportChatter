@@ -2,6 +2,7 @@
 /AirportChatter/Data/default_stations.json
 
 # Local credentials and developer overrides.
+/AGENTS.md
 .env
 .env.*
 *.local.xcconfig

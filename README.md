@@ -1,15 +1,21 @@
+<img src="docs/icon/preview.png" alt="AirportChatter logo: a warm control tower with a sleeping ginger cat" width="128">
+
 # AirportChatter
 
-A personal prototype combining airport radio with ambient music. Open `AirportChatter.xcodeproj` in Xcode to build for iOS or macOS.
+A cozy airport listening room for iOS and macOS, combining airport radio with ambient music. Settle into an illustrated control tower with time-of-day scenes, custom controls, and a sleepy cat.
+
+<img src="docs/screenshots/airport-chatter-iphone.jpg" alt="AirportChatter on iPhone: sunset over the runway from a cozy tower, with a sleeping cat and a brass play button" width="320">
+
+[Privacy policy](https://www.jan-huber.ch/airport-chatter/privacy-policy/) · [Contact and support](https://www.jan-huber.ch/airport-chatter/contact/)
+
+## Getting started
+
+Open `AirportChatter.xcodeproj` in Xcode to build for iOS or macOS.
 
 ## Local station catalog
 
 The station catalog is intentionally **not committed**. Supply a catalog you are authorized to use at `AirportChatter/Data/default_stations.json`. Its format is an array of `Station` objects; see `examples/default_stations.example.json` for a fictional, non-playable example. Without a local catalog, the app builds with an empty station list. Xcode includes the local JSON in app builds, so excluding it from Git does not exclude it from distributed binaries.
 
-The existing local catalog is preserved on this development machine. Back it up separately before using commands that delete ignored files. A Git checkout alone cannot restore it.
+## Personal use and permissions
 
-LiveATC's terms restrict dedicated applications, redistribution, and direct stream linking. No permission to redistribute its directory has been established here; `.gitignore` is a repository precaution, not a license. See [LiveATC's terms](https://www.liveatc.net/legal/) and [catalog notes](docs/station-catalog.md). Obtain the appropriate permissions before sharing a catalog or distributing an app that uses the service.
-
-## Checks
-
-The standalone checks in `tests/` include run instructions. Catalog-specific checks run only when the local catalog is present. The other checks use synthetic fixtures and do not require live services.
+This project is intended for personal listening. See [LiveATC's terms](https://www.liveatc.net/legal/) for restrictions on using its service. Obtain the appropriate permissions before sharing a catalog or distributing an app that uses the service. Excluding a catalog from Git does not grant permission to use or redistribute it.
