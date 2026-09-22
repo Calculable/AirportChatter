@@ -1,6 +1,7 @@
 import Foundation
 
 enum AppLinks {
+    static let inspiration = URL(string: "https://listentothe.cloud/")!
     static let privacy = URL(string: "https://www.jan-huber.ch/airport-chatter/privacy-policy")!
     static let contact = URL(string: "https://www.jan-huber.ch/airport-chatter/contact")!
     static let liveATC = URL(string: "https://www.liveatc.net/")!

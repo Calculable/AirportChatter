@@ -379,6 +379,8 @@ struct ContentView: View {
         ScrollView {
             EquipmentPanel(label: "Settings & diagnostics") {
                 VStack(alignment: .leading, spacing: 20) {
+                    Link("Idea inspired by Listen to the Clouds ↗", destination: AppLinks.inspiration)
+                        .font(TowerStyle.type(12)).foregroundStyle(TowerStyle.mint)
                     Text("Personal listening only. Not licensed for public distribution.").font(TowerStyle.type(11)).foregroundStyle(TowerStyle.paper.opacity(0.65))
                     Text("For entertainment only. Audio may be delayed or unavailable. Never use it for navigation, flight operations, or safety decisions.")
                         .font(TowerStyle.type(12)).foregroundStyle(TowerStyle.paper)
