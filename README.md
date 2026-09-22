@@ -16,8 +16,4 @@ Open `AirportChatter.xcodeproj` in Xcode to build for iOS or macOS.
 
 ## Local station catalog
 
-The station catalog is intentionally **not committed**. Supply a catalog you are authorized to use at `AirportChatter/Data/default_stations.json`. Its format is an array of `Station` objects; see `examples/default_stations.example.json` for a fictional, non-playable example. Without a local catalog, the app builds with an empty station list. Xcode includes the local JSON in app builds, so excluding it from Git does not exclude it from distributed binaries.
-
-## Personal use and permissions
-
-This project is intended for personal listening. See [LiveATC's terms](https://www.liveatc.net/legal/) for restrictions on using its service. Obtain the appropriate permissions before sharing a catalog or distributing an app that uses the service. Excluding a catalog from Git does not grant permission to use or redistribute it.
+The station catalog is intentionally **not committed**. Supply a catalog you are authorized to use at `AirportChatter/Data/default_stations.json`. Its format is an array of `Station` objects; see `examples/default_stations.example.json` for a fictional, non-playable example. Without a local catalog, the app builds with an empty station list.
