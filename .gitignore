@@ -1,0 +1,15 @@
+# Locally supplied catalog; redistribution rights have not been established.
+/AirportChatter/Data/default_stations.json
+
+# Local credentials and developer overrides.
+.env
+.env.*
+*.local.xcconfig
+/Configuration/Secrets.plist
+
+# Build outputs and personal Xcode state.
+.DS_Store
+DerivedData/
+.build/
+xcuserdata/
+*.xcuserstate

@@ -1,17 +1,13 @@
-//
-//  AirportChatterApp.swift
-//  AirportChatter
-//
-//  Created by Jan Huber on 21.02.2026.
-//
-
 import SwiftUI
 
 @main
 struct AirportChatterApp: App {
+    @State private var coordinator = AudioCoordinator()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(coordinator)
         }
     }
 }

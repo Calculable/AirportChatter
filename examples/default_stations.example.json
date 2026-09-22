@@ -1,0 +1,12 @@
+[
+  {
+    "id": "example-radio",
+    "name": "Example airport radio",
+    "iata": "",
+    "code": "example-radio",
+    "streamURL": "https://example.invalid/radio",
+    "region": "Example region",
+    "isDefault": true,
+    "location": "Example city, Example country"
+  }
+]
