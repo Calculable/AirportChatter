@@ -2,6 +2,8 @@
 
 # AirportChatter
 
+**This project is vibe-coded.**
+
 A cozy airport listening room for iOS and macOS, combining airport radio with ambient music. Settle into an illustrated control tower with time-of-day scenes, custom controls, and a sleepy cat.
 
 The idea for AirportChatter was inspired by [Listen to the Clouds](https://listentothe.cloud/).
