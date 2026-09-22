@@ -1,28 +1,58 @@
 {
   "fill": {
-    "automatic-gradient": "extended-srgb:0.02500,0.17000,0.36000,1.00000"
+    "automatic-gradient": "extended-srgb:0.09500,0.24500,0.24000,1.00000"
   },
   "groups": [
     {
+      "name": "Sleepy tower cat",
       "layers": [
         {
-          "image-name": "Radio.svg",
-          "name": "Radio waves"
-        },
-        {
-          "image-name": "Aircraft.svg",
-          "name": "Aircraft"
+          "image-name": "SleepyCat.svg",
+          "name": "Ginger cat"
         }
       ],
       "shadow": {
         "kind": "neutral",
-        "opacity": 0.5
+        "opacity": 0.16
       },
       "translucency": {
-        "enabled": true,
-        "value": 0.12
+        "enabled": false,
+        "value": 0
+      }
+    },
+    {
+      "name": "Warm tower",
+      "layers": [
+        {
+          "image-name": "Tower.svg",
+          "name": "Amber tower"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.35
       },
-      "name": "Aircraft and transmission"
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    },
+    {
+      "name": "Moonlit sky",
+      "layers": [
+        {
+          "image-name": "Sky.svg",
+          "name": "Moon and little aircraft"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.15
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
     }
   ],
   "supported-platforms": {

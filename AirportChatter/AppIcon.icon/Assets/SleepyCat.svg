@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="fur" x1="0" y1="0" x2="0.3" y2="1">
+      <stop stop-color="#ffd39b"/><stop offset="1" stop-color="#df915c"/>
+    </linearGradient>
+  </defs>
+  <!-- A single compact silhouette keeps the head, tucked paws and curled body connected. -->
+  <path d="M550 736C529 723 531 694 546 681L544 644Q545 634 554 640L580 660Q592 657 604 660L625 641Q634 634 635 647L636 672C657 643 687 631 717 638C762 647 788 684 784 720C780 752 754 762 715 763H584Q559 761 550 736Z" fill="url(#fur)"/>
+  <path d="M551 650L555 674L574 665Z M626 651L613 664L630 677Z" fill="#c97e60"/>
+  <path d="M549 702Q559 713 570 703M589 703Q601 714 611 703" stroke="#684638" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M575 718Q581 714 587 718L581 724Z" fill="#965b4a"/>
+  <path d="M581 724Q579 730 573 729" stroke="#965b4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M576 671L579 680M590 670L590 679" stroke="#bf784d" stroke-width="6" stroke-linecap="round"/>
+  <path d="M678 659Q686 669 686 678M705 656Q715 666 716 677M731 665Q742 674 741 685" stroke="#c17a4d" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- The tail wraps into the body without a detached or dangling tip. -->
+  <path d="M770 712C774 748 723 757 676 742C660 737 645 737 633 741" stroke="#c27c50" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <path d="M770 708C773 738 722 748 678 735C659 729 643 732 636 735" stroke="#f5bc82" stroke-width="25" fill="none" stroke-linecap="round"/>
+  <path d="M563 746Q577 739 594 746" stroke="#f7c68b" stroke-width="14" fill="none" stroke-linecap="round"/>
+</svg>

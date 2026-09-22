@@ -1,9 +1,9 @@
 # AirportChatter icon
 
-The app uses `AirportChatter/AppIcon.icon`, an editable Icon Composer document with original vector aircraft and radio-wave layers. Xcode discovers it through the synchronized app folder and the existing `AppIcon` build setting.
+The app uses `AirportChatter/AppIcon.icon`, an editable Icon Composer document discovered by the synchronized Xcode target and the existing AppIcon build setting.
 
-Open the `.icon` document in Icon Composer to adjust color, material, depth, or appearance. The artwork lives in its `Assets` folder. Default and dark previews in this folder were exported with Apple's generation 26 renderer.
+The cozy redesign uses original SVG artwork: an amber control tower, mint windows, a curled-up ginger cat, a crescent moon and a small passing aircraft on deep teal. Three separate groups give the cat, tower and sky their own depth and shadows. Icon Composer supplies platform masks and glass materials.
 
-The design pairs an ascending white aircraft with turquoise radio waves on a midnight-blue background. Icon Composer supplies the platform shape and appearance treatments.
+SF Symbols Beta was used to inspect the cat silhouette as a readability reference; the artwork is custom drawn, not an exported SF Symbol. The document was opened and inspected in Icon Composer, and its bundled renderer exported the default/dark previews here using design generation 26.
 
-Verified with an unsigned macOS Debug build.
+Assets: `Tower.svg`, `SleepyCat.svg`, and `Sky.svg` in the icon document's Assets folder. iOS Simulator compilation validates integration.
