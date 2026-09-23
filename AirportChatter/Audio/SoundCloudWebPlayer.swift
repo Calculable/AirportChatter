@@ -96,7 +96,7 @@ final class SoundCloudCoordinator: NSObject, WKNavigationDelegate, WKScriptMessa
     }
 }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 struct SoundCloudWebView: UIViewRepresentable {
     let bridge: SoundCloudWebPlayer
 
@@ -151,7 +151,7 @@ extension SoundCloudWebView {
 #endif
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.navigationDelegate = context.coordinator
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         webView.isOpaque = false
         webView.backgroundColor = .clear
 #endif
