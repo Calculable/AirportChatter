@@ -29,7 +29,10 @@ struct TowerRoom: View {
                 ZStack {
                     Image(period.asset(portrait: portrait)).resizable()
                         .frame(width: width, height: height)
-                        .accessibilityLabel("Airport Chatter. \(period.rawValue) in the tower. A postcard says: Somewhere, someone is coming home.")
+                        .accessibilityLabel("Tower Lounge. \(period.rawValue) in the tower. A postcard says: Somewhere, someone is coming home.")
+                    TowerNameplate()
+                        .frame(width: width * 0.25, height: height * (portrait ? 0.025 : 0.036))
+                        .position(x: width * 0.5, y: height * (portrait ? 0.015 : 0.019))
                     TowerFlights(motion: motion, night: period == .night)
                         .frame(width: width * 0.80, height: height * 0.43)
                         .position(x: width * 0.5, y: height * 0.285)
@@ -242,5 +245,36 @@ struct DeskStatusLamp: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Airport stream: \(status.rawValue)")
+    }
+}
+
+/// A physical nameplate covers the lettering on the original illustrated beam.
+private struct TowerNameplate: View {
+    var body: some View {
+        GeometryReader { geometry in
+            HStack(spacing: geometry.size.width * 0.04) {
+                rivet
+                Text("TOWER LOUNGE")
+                    .font(.system(size: geometry.size.height * 0.62, weight: .medium, design: .serif))
+                    .tracking(geometry.size.width * 0.006)
+                    .lineLimit(1).minimumScaleFactor(0.5)
+                    .foregroundStyle(Color(red: 0.72, green: 0.56, blue: 0.37))
+                    .shadow(color: .black, radius: 0, y: 1)
+                    .frame(maxWidth: .infinity)
+                rivet
+            }
+            .padding(.horizontal, geometry.size.width * 0.035)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .background(LinearGradient(colors: [Color(red: 0.16, green: 0.19, blue: 0.18), Color(red: 0.08, green: 0.10, blue: 0.10)], startPoint: .top, endPoint: .bottom), in: RoundedRectangle(cornerRadius: 2))
+            .overlay(RoundedRectangle(cornerRadius: 2).strokeBorder(Color(red: 0.35, green: 0.28, blue: 0.18), lineWidth: 0.6))
+            .shadow(color: .black.opacity(0.6), radius: 1, y: 1)
+        }
+        .accessibilityHidden(true)
+        .allowsHitTesting(false)
+    }
+
+    private var rivet: some View {
+        Circle().fill(Color.black.opacity(0.7)).frame(width: 2, height: 2)
+            .overlay(Circle().strokeBorder(.white.opacity(0.15), lineWidth: 0.5))
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		3DF843522F499D210034AFC7 /* AirportChatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirportChatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DF843522F499D210034AFC7 /* Tower Lounge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tower Lounge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		3DF843532F499D210034AFC7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3DF843522F499D210034AFC7 /* AirportChatter.app */,
+				3DF843522F499D210034AFC7 /* Tower Lounge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3DF843512F499D210034AFC7 /* AirportChatter */ = {
+		3DF843512F499D210034AFC7 /* Tower Lounge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "AirportChatter" */;
+			buildConfigurationList = 3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "Tower Lounge" */;
 			buildPhases = (
 				3DF8434E2F499D210034AFC7 /* Sources */,
 				3DF8434F2F499D210034AFC7 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				3DF843542F499D210034AFC7 /* AirportChatter */,
 			);
-			name = AirportChatter;
+			name = "Tower Lounge";
 			packageProductDependencies = (
 			);
-			productName = AirportChatter;
-			productReference = 3DF843522F499D210034AFC7 /* AirportChatter.app */;
+			productName = "Tower Lounge";
+			productReference = 3DF843522F499D210034AFC7 /* Tower Lounge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -78,14 +78,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					3DF843512F499D210034AFC7 = {
 						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
-			buildConfigurationList = 3DF8434D2F499D210034AFC7 /* Build configuration list for PBXProject "AirportChatter" */;
+			buildConfigurationList = 3DF8434D2F499D210034AFC7 /* Build configuration list for PBXProject "TowerLounge" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3DF843512F499D210034AFC7 /* AirportChatter */,
+				3DF843512F499D210034AFC7 /* Tower Lounge */,
 			);
 		};
 /* End PBXProject section */
@@ -159,6 +159,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y78JQ299FM;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -182,6 +183,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -221,6 +223,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y78JQ299FM;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -237,6 +240,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -248,6 +252,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Y78JQ299FM;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -264,6 +269,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -304,6 +310,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Y78JQ299FM;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -320,6 +327,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -356,7 +364,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3DF8434D2F499D210034AFC7 /* Build configuration list for PBXProject "AirportChatter" */ = {
+		3DF8434D2F499D210034AFC7 /* Build configuration list for PBXProject "TowerLounge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DF8435B2F499D220034AFC7 /* Debug */,
@@ -365,7 +373,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "AirportChatter" */ = {
+		3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "Tower Lounge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DF8435E2F499D220034AFC7 /* Debug */,

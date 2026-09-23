@@ -13,7 +13,7 @@ Four scenes follow the user's local civil time, independent of the selected stat
 
 Each scene has portrait and landscape artwork. The live scene checks the time each minute, using the current timezone. These are clock-based periods, not location-based sunrise/sunset calculations.
 
-The built-in image-generation tool produced the backgrounds. All eight current asset paths and exact prompts are recorded in [tower-time-art.md](tower-time-art.md). Airport Chatter is painted on the window beam, and the quote is written on a postcard in the artwork. The former two twilight assets have been replaced by this set.
+The built-in image-generation tool produced the backgrounds. All eight current asset paths and exact prompts are recorded in [tower-time-art.md](tower-time-art.md). The original Airport Chatter lettering on the window beam is covered by a physical-style Tower Lounge nameplate in the scene. The quote is written on a postcard in the artwork. The former two twilight assets have been replaced by this set.
 
 ## Interactive objects
 

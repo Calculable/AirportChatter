@@ -1,4 +1,4 @@
-# AirportChatter icon
+# Tower Lounge icon
 
 The app uses `AirportChatter/AppIcon.icon`, an editable Icon Composer document discovered by the synchronized Xcode target and the existing AppIcon build setting.
 

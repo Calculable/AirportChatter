@@ -47,7 +47,7 @@ final class SystemPlaybackController {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: station,
             MPMediaItemPropertyArtist: "Airport radio + SoundCloud",
-            MPMediaItemPropertyAlbumTitle: "AirportChatter",
+            MPMediaItemPropertyAlbumTitle: "Tower Lounge",
             MPNowPlayingInfoPropertyIsLiveStream: true,
             MPNowPlayingInfoPropertyPlaybackRate: playing ? 1.0 : 0.0,
             MPNowPlayingInfoPropertyDefaultPlaybackRate: 1.0

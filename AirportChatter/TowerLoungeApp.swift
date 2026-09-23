@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct AirportChatterApp: App {
+struct TowerLoungeApp: App {
     @State private var coordinator = AudioCoordinator()
     @State private var roomSession = TowerRoomSession()
 

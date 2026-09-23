@@ -1,20 +1,20 @@
-<img src="docs/icon/preview.png" alt="AirportChatter logo: a warm control tower with a sleeping ginger cat" width="128">
+<img src="docs/icon/preview.png" alt="Tower Lounge logo: a warm control tower with a sleeping ginger cat" width="128">
 
-# AirportChatter
+# Tower Lounge
 
 **This project is vibe-coded.**
 
 A cozy airport listening room for iOS and macOS, combining airport radio with ambient music. Settle into an illustrated control tower with time-of-day scenes, custom controls, and a sleepy cat.
 
-The idea for AirportChatter was inspired by [Listen to the Clouds](https://listentothe.cloud/).
+The idea for Tower Lounge was inspired by [Listen to the Clouds](https://listentothe.cloud/).
 
-<img src="docs/screenshots/airport-chatter-iphone.jpg" alt="AirportChatter on iPhone: sunset over the runway from a cozy tower, with a sleeping cat and a brass play button" width="320">
+<img src="docs/screenshots/tower-lounge-iphone.jpg" alt="Tower Lounge on iPhone: sunset over the runway from a cozy tower, with a sleeping cat and a brass play button" width="320">
 
 [Privacy policy](https://www.jan-huber.ch/airport-chatter/privacy-policy/) · [Contact and support](https://www.jan-huber.ch/airport-chatter/contact/)
 
 ## Getting started
 
-Open `AirportChatter.xcodeproj` in Xcode to build for iOS or macOS.
+Open `TowerLounge.xcodeproj` in Xcode to build for iOS or macOS.
 
 ## Local station catalog
 
