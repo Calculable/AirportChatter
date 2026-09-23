@@ -6,7 +6,6 @@ import WebKit
 final class SoundCloudWebPlayer {
     private weak var webView: WKWebView?
     private var wantsPlayback = false
-    private var volume = 0.5
     private(set) var isReady = false {
         didSet { onReadyChanged?(isReady) }
     }
@@ -31,7 +30,6 @@ final class SoundCloudWebPlayer {
         switch message {
         case "ready":
             isReady = true
-            send("setVolume", value: Int(volume * 100))
             send(wantsPlayback ? "play" : "pause")
         case "playing": onPlayingChanged?(true)
         case "paused", "finished": onPlayingChanged?(false)
@@ -42,20 +40,14 @@ final class SoundCloudWebPlayer {
         }
     }
 
-    func setVolume(_ value: Double) {
-        volume = max(0, min(1, value))
-        send("setVolume", value: Int(volume * 100))
-    }
-
     func play() { wantsPlayback = true; send("play") }
     func pause() { wantsPlayback = false; send("pause") }
     func next() { send("next") }
     func previous() { send("prev") }
 
-    private func send(_ command: String, value: Int? = nil) {
+    private func send(_ command: String) {
         guard isReady, let webView else { return }
-        let argument = value.map { ", \($0)" } ?? ""
-        webView.evaluateJavaScript("window.nativeSoundCloudControl('\(command)'\(argument))") { [weak self] _, error in
+        webView.evaluateJavaScript("window.nativeSoundCloudControl('\(command)')") { [weak self] _, error in
             if error != nil {
                 self?.isReady = false
                 self?.onPlayingChanged?(false)
@@ -237,9 +229,9 @@ extension SoundCloudWebView {
           widget.bind(SC.Widget.Events.ERROR, () => notify("error"));
 
           let transportRevision = 0;
-          window.nativeSoundCloudControl = function(action, value) {
+          window.nativeSoundCloudControl = function(action) {
             if (!widget) return;
-            const revision = action === 'setVolume' ? transportRevision : ++transportRevision;
+            const revision = ++transportRevision;
             switch (action) {
               case 'play':
                 widget.play();
@@ -254,9 +246,6 @@ extension SoundCloudWebView {
                   if (action === 'next') widget.next(); else widget.prev();
                   if (paused) widget.pause(); else widget.play();
                 });
-                break;
-              case 'setVolume':
-                widget.setVolume(Number(value));
                 break;
             }
           }

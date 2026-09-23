@@ -11,9 +11,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3DF843542F499D210034AFC7 /* AirportChatter */ = {
+		3DF843542F499D210034AFC7 /* TowerLounge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AirportChatter;
+			path = TowerLounge;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		3DF843492F499D210034AFC7 = {
 			isa = PBXGroup;
 			children = (
-				3DF843542F499D210034AFC7 /* AirportChatter */,
+				3DF843542F499D210034AFC7 /* TowerLounge */,
 				3DF843532F499D210034AFC7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				3DF843542F499D210034AFC7 /* AirportChatter */,
+				3DF843542F499D210034AFC7 /* TowerLounge */,
 			);
 			name = AirportChatter;
 			packageProductDependencies = (

@@ -1,4 +1,4 @@
-// swiftc AirportChatter/Models/Station.swift AirportChatter/Models/PlaybackState.swift AirportChatter/Audio/ATCStreamPlayer.swift tests/StreamRecoveryChecks.swift -o /tmp/recovery-checks && /tmp/recovery-checks
+// swiftc TowerLounge/Models/Station.swift TowerLounge/Models/PlaybackState.swift TowerLounge/Audio/ATCStreamPlayer.swift tests/StreamRecoveryChecks.swift -o /tmp/recovery-checks && /tmp/recovery-checks
 import AVFoundation
 import Foundation
 

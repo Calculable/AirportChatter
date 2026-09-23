@@ -344,7 +344,6 @@ struct ContentView: View {
                 Spacer()
                 transportButton("Next SoundCloud track", symbol: "forward.end.fill", disabled: !model.playbackState.musicReady) { model.nextTrack() }
             }
-            ConsoleFader(title: "Music level", value: Binding(get: { model.playbackState.musicVolume }, set: { model.setMusicVolume($0) }), accent: TowerStyle.amber)
         }
     }
 

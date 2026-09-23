@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const source = fs.readFileSync('AirportChatter/Audio/SoundCloudWebPlayer.swift', 'utf8');
+const source = fs.readFileSync('TowerLounge/Audio/SoundCloudWebPlayer.swift', 'utf8');
 const script = source.match(/static let remoteControlScript = """([\s\S]*?)"""/)[1];
 function setup(host, mediaSession = true) {
   const handlers = {}, listeners = {}, messages = [];

@@ -20,7 +20,6 @@ final class AudioCoordinator {
 
     private let selectedStationKey = "airport_chatter_selected_station"
     private let radioVolumeKey = "airport_chatter_radio_volume"
-    private let musicVolumeKey = "airport_chatter_music_volume"
     private let lastIntentKey = "airport_chatter_last_intent_playing"
 
     init() {
@@ -40,9 +39,6 @@ final class AudioCoordinator {
         soundCloud.onRemoteCommand = { [weak self] command in self?.handlePlaybackCommand(command) }
         soundCloud.onReadyChanged = { [weak self] isReady in
             self?.playbackState.musicReady = isReady
-            if isReady {
-                self?.soundCloud.setVolume(self?.playbackState.musicVolume ?? 0.5)
-            }
         }
 
         soundCloud.onPlayingChanged = { [weak self] playing in
@@ -101,7 +97,6 @@ final class AudioCoordinator {
         restoreState()
 
         atcPlayer.setVolume(playbackState.radioVolume)
-        soundCloud.setVolume(playbackState.musicVolume)
 
         if playbackState.selectedStationID == nil {
             playbackState.selectedStationID = stations.first?.id
@@ -188,12 +183,6 @@ final class AudioCoordinator {
         UserDefaults.standard.set(value, forKey: radioVolumeKey)
     }
 
-    func setMusicVolume(_ value: Double) {
-        playbackState.musicVolume = value
-        soundCloud.setVolume(value)
-        UserDefaults.standard.set(value, forKey: musicVolumeKey)
-    }
-
     func clearErrorBanner() {
         playbackState.errorBanner = nil
     }
@@ -259,9 +248,6 @@ final class AudioCoordinator {
 
         let savedRadio = defaults.double(forKey: radioVolumeKey)
         playbackState.radioVolume = savedRadio == 0 ? 0.5 : savedRadio
-
-        let savedMusic = defaults.double(forKey: musicVolumeKey)
-        playbackState.musicVolume = savedMusic == 0 ? 0.5 : savedMusic
 
         playbackState.selectedStationID = defaults.string(forKey: selectedStationKey)
 

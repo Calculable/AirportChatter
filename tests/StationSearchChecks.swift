@@ -1,5 +1,5 @@
 // Run from the repository root:
-// swiftc AirportChatter/Models/Station.swift tests/StationSearchChecks.swift -o /tmp/station-checks && /tmp/station-checks
+// swiftc TowerLounge/Models/Station.swift tests/StationSearchChecks.swift -o /tmp/station-checks && /tmp/station-checks
 import Foundation
 
 @main
@@ -26,9 +26,9 @@ struct StationSearchChecks {
         precondition(adjacentStation(in: visible, selectedID: "filtered-out", forward: false)?.id == "boston")
         precondition(adjacentStation(in: [], selectedID: "paris", forward: true) == nil)
         precondition(adjacentStation(in: [paris], selectedID: "paris", forward: false)?.id == "paris")
-        let catalogPath = "AirportChatter/Data/default_stations.json"
+        let catalogPath = "TowerLounge/Data/default_stations.json"
         if FileManager.default.fileExists(atPath: catalogPath) {
-            let data = try Data(contentsOf: URL(fileURLWithPath: "AirportChatter/Data/default_stations.json"))
+            let data = try Data(contentsOf: URL(fileURLWithPath: "TowerLounge/Data/default_stations.json"))
             let stations = try JSONDecoder().decode([Station].self, from: data)
             precondition(CountryFlag.emoji(for: "Switzerland") == "🇨🇭")
             precondition(CountryFlag.emoji(for: "United States") == "🇺🇸")

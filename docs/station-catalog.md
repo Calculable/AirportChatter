@@ -2,7 +2,7 @@
 
 This document describes a **local, Git-ignored** snapshot, not a redistributed catalog. See the repository README for setup and licensing limitations. Review of https://www.liveatc.net/legal/ on September 22, 2026 found no explicit permission to redistribute the directory. Sections 2.1, 3.4, 3.13, 3.15, and 4 address permitted use, dedicated apps, retrieval, direct links, and rights. This is a conservative repository decision, not a definitive legal assessment.
 
-`AirportChatter/Data/default_stations.json` contains a snapshot of LiveATC's public feed directory collected on September 22, 2026.
+`TowerLounge/Data/default_stations.json` contains a snapshot of LiveATC's public feed directory collected on September 22, 2026.
 
 Source: https://www.liveatc.net/feedindex.php?type=all
 

@@ -1,4 +1,4 @@
-// swiftc AirportChatter/Models/TowerAtmosphere.swift tests/TowerAtmosphereChecks.swift -o /tmp/tower-checks && /tmp/tower-checks
+// swiftc TowerLounge/Models/TowerAtmosphere.swift tests/TowerAtmosphereChecks.swift -o /tmp/tower-checks && /tmp/tower-checks
 import Foundation
 
 @main struct TowerAtmosphereChecks {

@@ -20,7 +20,6 @@ import Foundation
     var onFailure: ((String) -> Void)?
     var onRemoteCommand: ((PlaybackCommand) -> Void)?
     var starts = 0, pauses = 0, nexts = 0, previouses = 0
-    func setVolume(_ value: Double) {}
     func play() { starts += 1 }
     func pause() { pauses += 1 }
     func next() { nexts += 1 }

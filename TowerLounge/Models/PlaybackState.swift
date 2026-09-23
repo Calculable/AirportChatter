@@ -23,7 +23,6 @@ struct PlaybackState {
     }
     var selectedStationID: String?
     var radioVolume: Double = 0.5
-    var musicVolume: Double = 0.5
     var musicReady = false
     var radioReady = false
     var errorBanner: String?

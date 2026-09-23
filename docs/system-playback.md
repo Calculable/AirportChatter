@@ -22,7 +22,7 @@ Physical-device verification remains required: start both sources, choose an Air
 Run bridge tests with `node tests/SystemPlaybackBridgeChecks.js`. Compile coordinator tests on macOS with:
 
 ```sh
-xcrun swiftc AirportChatter/Audio/AudioCoordinator.swift AirportChatter/Audio/SystemPlaybackController.swift AirportChatter/Data/StationRepository.swift AirportChatter/Models/Station.swift AirportChatter/Models/PlaybackState.swift tests/SystemPlaybackCoordinatorChecks.swift -o /tmp/system-playback-checks
+xcrun swiftc TowerLounge/Audio/AudioCoordinator.swift TowerLounge/Audio/SystemPlaybackController.swift TowerLounge/Data/StationRepository.swift TowerLounge/Models/Station.swift TowerLounge/Models/PlaybackState.swift tests/SystemPlaybackCoordinatorChecks.swift -o /tmp/system-playback-checks
 /tmp/system-playback-checks
 ```
 

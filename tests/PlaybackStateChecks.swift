@@ -1,4 +1,4 @@
-// swiftc AirportChatter/Models/PlaybackState.swift tests/PlaybackStateChecks.swift -o /tmp/playback-checks && /tmp/playback-checks
+// swiftc TowerLounge/Models/PlaybackState.swift tests/PlaybackStateChecks.swift -o /tmp/playback-checks && /tmp/playback-checks
 import Foundation
 @main struct PlaybackStateChecks {
     static func main() {

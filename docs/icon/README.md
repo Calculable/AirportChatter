@@ -1,6 +1,6 @@
 # Tower Lounge icon
 
-The app uses `AirportChatter/AppIcon.icon`, an editable Icon Composer document discovered by the synchronized Xcode target and the existing AppIcon build setting.
+The app uses `TowerLounge/AppIcon.icon`, an editable Icon Composer document discovered by the synchronized Xcode target and the existing AppIcon build setting.
 
 The cozy redesign uses original SVG artwork: an amber control tower, mint windows, a curled-up ginger cat, a crescent moon and a small passing aircraft on deep teal. Three separate groups give the cat, tower and sky their own depth and shadows. Icon Composer supplies platform masks and glass materials.
 

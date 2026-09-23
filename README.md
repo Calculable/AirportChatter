@@ -10,7 +10,7 @@ The idea for Tower Lounge was inspired by [Listen to the Clouds](https://listent
 
 <img src="docs/screenshots/tower-lounge-iphone.jpg" alt="Tower Lounge on iPhone: sunset over the runway from a cozy tower, with a sleeping cat and a brass play button" width="320">
 
-[Privacy policy](https://www.jan-huber.ch/airport-chatter/privacy-policy/) · [Contact and support](https://www.jan-huber.ch/airport-chatter/contact/)
+[Privacy policy](https://www.jan-huber.ch/tower-lounge/privacy-policy/) · [Contact and support](https://www.jan-huber.ch/tower-lounge/contact/)
 
 ## Getting started
 
@@ -18,4 +18,4 @@ Open `TowerLounge.xcodeproj` in Xcode to build for iOS or macOS.
 
 ## Local station catalog
 
-The station catalog is intentionally **not committed**. Supply a catalog you are authorized to use at `AirportChatter/Data/default_stations.json`. Its format is an array of `Station` objects; see `examples/default_stations.example.json` for a fictional, non-playable example. Without a local catalog, the app builds with an empty station list.
+The station catalog is intentionally **not committed**. Supply a catalog you are authorized to use at `TowerLounge/Data/default_stations.json`. Its format is an array of `Station` objects; see `examples/default_stations.example.json` for a fictional, non-playable example. Without a local catalog, the app builds with an empty station list.
