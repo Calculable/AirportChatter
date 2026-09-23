@@ -270,6 +270,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				"INFOPLIST_KEY_LSApplicationCategoryType[sdk=macosx*]" = "public.app-category.entertainment";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
@@ -329,6 +330,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				"INFOPLIST_KEY_LSApplicationCategoryType[sdk=macosx*]" = "public.app-category.entertainment";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
