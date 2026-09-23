@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3DF843512F499D210034AFC7 /* Tower Lounge */ = {
+		3DF843512F499D210034AFC7 /* AirportChatter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "Tower Lounge" */;
+			buildConfigurationList = 3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "AirportChatter" */;
 			buildPhases = (
 				3DF8434E2F499D210034AFC7 /* Sources */,
 				3DF8434F2F499D210034AFC7 /* Frameworks */,
@@ -63,7 +63,7 @@
 			fileSystemSynchronizedGroups = (
 				3DF843542F499D210034AFC7 /* AirportChatter */,
 			);
-			name = "Tower Lounge";
+			name = AirportChatter;
 			packageProductDependencies = (
 			);
 			productName = "Tower Lounge";
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3DF843512F499D210034AFC7 /* Tower Lounge */,
+				3DF843512F499D210034AFC7 /* AirportChatter */,
 			);
 		};
 /* End PBXProject section */
@@ -270,6 +270,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
+				"INFOPLIST_KEY_LSApplicationCategoryType[sdk=macosx*]" = "public.app-category.entertainment";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -288,7 +289,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.janhuber.AirportChatter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tower Lounge";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -328,6 +329,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tower Lounge";
+				"INFOPLIST_KEY_LSApplicationCategoryType[sdk=macosx*]" = "public.app-category.entertainment";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_FILE[sdk=iphonesimulator*]" = "Configuration/iOS-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -346,7 +348,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.janhuber.AirportChatter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tower Lounge";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -373,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "Tower Lounge" */ = {
+		3DF8435D2F499D220034AFC7 /* Build configuration list for PBXNativeTarget "AirportChatter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DF8435E2F499D220034AFC7 /* Debug */,
